@@ -1,27 +1,46 @@
-import { Text, SafeAreaView, StyleSheet, Image, Button, TextInput, Alert} from 'react-native';
+import { Text, StyleSheet } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native'
 
-import React, {useState} from 'react'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+// You can import supported modules from npm
+import { Card } from 'react-native-paper';
 
 // or any files within the Snack
 import AssetExample from './components/AssetExample';
+function Home(){
+
+return(
+
+<Text> Home</Text>
+
+);
+
+}
+
+function Voice_translate(){
+
+return(
+
+<AssetExample/>
+
+);
+
+}
+const Tab = createBottomTabNavigator();
 
 export default function App() {
-
-  const [name, setName] = useState('')
-
-  const sayHi = () => {
-    Alert.alert("Hi" + name)
-  }
-
   return (
-    <SafeAreaView style={styles.container}>
-
-    <TextInput placeholder = "Enter your name" 
-    onChangeText = {(text) => setName(text)} />
-
-    <Button title = "Click Me!" onPress = {sayHi} />
+    <NavigationContainer> 
     
-    </SafeAreaView>
+      <Tab.Navigator>
+    
+      <Tab.Screen name = "Home" component = {Home}/>
+      <Tab.Screen name = "Voice Translate" component = {Voice_translate}/>
+    
+      </Tab.Navigator>
+
+    
+    </NavigationContainer>
   );
 }
 
@@ -31,5 +50,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#ecf0f1',
     padding: 8,
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
